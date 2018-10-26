@@ -11,6 +11,7 @@
     console.log('uuid: ---------------------------------------> ', uuid);
   };
   
+  // T9 Keyboard
   generatedValue = input_text => {
     let valueObject = {
       a: '21', b: '22', c: '23', d: '31', e: '32', f: '33', g: '41', h: '42', i: '43', j: '51', k: '52',
@@ -30,5 +31,24 @@
       value = value.concat(valueObject[item]);
     });
     console.log('value: ==================>', value.replace(/undefined/ig, ''));
+  };
+
+ // ma hoa thanh a => b, b => c
+  generatedValue = input_text => {
+    let value = '';
+    let arrayInputText = input_text.trim(' ').toLowerCase().split('');
+    let arrayCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    arrayInputText.forEach(function(text) {
+      for (let i = 0; i < arrayCharacters.length; i++) {
+        let item = arrayCharacters[i];
+        if (text === item) {
+          if (i === arrayCharacters.length - 1) {
+            value = value.concat(arrayCharacters[0]);
+          } else {
+            value = value.concat(arrayCharacters[i + 1]);
+          }
+        }
+      }
+    });
   };
   
