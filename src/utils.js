@@ -1,14 +1,25 @@
 
 // generate randomId
-  generatedUUID = () => {
-    let char = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '~', '@', '!', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '+', '>', '<'];
-    let uuid = '';
-    for (let i = 0; i < 64; i++) {
-      var rand = char[Math.floor(Math.random() * char.length)];
-      uuid = uuid.concat(rand);
-    }
-    console.log('uuid: ---------------------------------------> ', uuid);
+generatedUUID = length => {
+  let char = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '~', '@', '!', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '+', '>', '<'];
+  let uuid = '';
+  for (let i = 0; i <= length; i++) {
+    uuid = uuid.concat(char[Math.floor(Math.random() * char.length)]);
+  }
+  return uuid;
+};
+
+// xoa duplicate trung lap => member_id
+removeDuplicate = originArray => {
+  const things = {};
+  things.thing = [];
+  originArray.forEach(function(item) {
+    things.thing.push({ at: item.at, member_id: item.member_id });
+  });
+  return Array.from(
+    things.thing.reduce((m, t) => m.set(t.member_id, t), new Map()).values()
+    );
   };
   
   // T9 Keyboard
@@ -28,12 +39,18 @@
       if (item === '!') {
         value = value.concat('00');
       }
+      if(item === '.'){
+        value = value.concat('000');
+      }
+      if(item === '?'){
+        value = value.concat('0000');
+      }
       value = value.concat(valueObject[item]);
     });
-    console.log('value: ==================>', value.replace(/undefined/ig, ''));
+    return value.replace(/undefined/ig, '');
   };
-
- // ma hoa thanh a => b, b => c
+  
+  // ma hoa thanh a => b, b => c
   generatedValue = input_text => {
     let value = '';
     let arrayInputText = input_text.trim(' ').toLowerCase().split('');
@@ -50,5 +67,6 @@
         }
       }
     });
+    return value;
   };
   
