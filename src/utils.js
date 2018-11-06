@@ -21,7 +21,7 @@ removeDuplicate = originArray => {
     things.thing.reduce((m, t) => m.set(t.member_id, t), new Map()).values()
     );
   };
-  
+
   // T9 Keyboard
   generatedValue = input_text => {
     let valueObject = {
@@ -49,7 +49,7 @@ removeDuplicate = originArray => {
     });
     return value.replace(/undefined/ig, '');
   };
-  
+
   // ma hoa thanh a => b, b => c
   generatedValue = input_text => {
     let value = '';
@@ -69,4 +69,3 @@ removeDuplicate = originArray => {
     });
     return value;
   };
-  
